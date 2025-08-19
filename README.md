@@ -67,5 +67,3 @@ Tested and works on:
 ## License
 
 Copyright © 2025 Amir Javanmir. Released under the MIT License.
-
-```
