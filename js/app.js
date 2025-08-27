@@ -10,15 +10,15 @@ button.addEventListener("click", async function (e) {
     try {
         button.disabled = true;
         button.textContent = "در حال ساخت اسکرین‌ شات...";
-        const data = await captureSiteToBase64("#formToCapture", "#about", {scale: 2, useCORS: true });
+        const data = await captureSiteToBase64("#formToCapture", "#about", { scale: 2, useCORS: true });
 
         let downloadLink = document.createElement("a");
         downloadLink.href = data;
-        downloadLink.download = `screenshot-${new Date().toISOString().slice(0,10)}.png`;
+        downloadLink.download = `screenshot-${new Date().toISOString().slice(0, 10)}.png`;
         downloadLink.click();
     } catch (error) {
         console.error("Error:" + error.message || error);
-    }finally{
+    } finally {
         button.disabled = false;
         button.textContent = 'ارسال فرم';
     }
@@ -54,7 +54,7 @@ async function captureSiteToBase64(select, addPart, opts) {
             textPreview.style.borderTop = '1px dashed #ccc';
             textPreview.style.padding = '20px';
             textPreview.style.direction = 'rtl';
-            textPreview.textContent = src.value;
+            textPreview.textContent = src.value.replace(/([\u0600-\u06FF])(\d)/g, '$1 $2').replace(/(\d)([\u0600-\u06FF])/g, '$1 $2');
             cloned.appendChild(textPreview);
         }
     }
